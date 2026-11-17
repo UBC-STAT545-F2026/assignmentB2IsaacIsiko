@@ -1,0 +1,56 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# assignmentB2IsaacIsiko
+
+`assignmentB2IsaacIsiko` provides `numeric_overview()`, a function that
+calculates the mean, standard deviation and median of every numeric column in
+a data frame, optionally grouped by one column, and returns a tidy tibble.
+
+# Installing
+
+Install version 0.1.0 from GitHub:
+
+```r
+# install.packages("devtools")
+
+devtools::install_github("UBC-STAT545-F2026/assignmentB2IsaacIsiko", ref = "0.1.0")
+```
+
+# Usage
+
+Summarise every numeric column, split by a grouping column:
+
+```{r example-grouped}
+library(assignmentB2IsaacIsiko)
+
+numeric_overview(mtcars, group_var = "cyl")
+```
+
+Without `group_var`, the whole data frame can be summarised in one row:
+
+```{r example-ungrouped}
+
+numeric_overview(iris, digits = 1)
+```
+
+Missing values are removed by default by Setting `na_rm = FALSE` to keep them:
+
+```{r example-na}
+
+df <- data.frame(g = c("a", "a", "b"), v = c(1, NA, 3))
+
+numeric_overview(df, group_var = "g", na_rm = FALSE)
+```
